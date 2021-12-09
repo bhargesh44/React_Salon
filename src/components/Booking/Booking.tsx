@@ -79,16 +79,15 @@ function Booking(props: any) {
   const { handleClose } = props;
   const classes = useStyles();
   const [openPayment, setOpenPayment] = React.useState(false);
-  const [spacing, setSpacing] = React.useState(1);
   const [table, setTable] = React.useState("");
   const [gender, setGender] = React.useState("");
   const [startDate, setStartDate] = useState<any>(null);
   const [timeFrom, setTimeFrom] = useState<any>(null);
   const [timeTo, setTimeTo] = useState<any>(null);
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const Close = () => setOpen(false);
+  const [openList, setOpenList] = React.useState(false);
+  const handleOpen = () => setOpenList(true);
+  const Close = () => setOpenList(false);
   const data = [
     {
       productName: "a",
@@ -283,12 +282,11 @@ function Booking(props: any) {
                 <TextField
                   hiddenLabel
                   id="filled-hidden-label-small"
-                  defaultValue="Contact Number"
+                  placeholder="Contact Number"
                   variant="filled"
                   size="small"
                   InputProps={{ disableUnderline: true }}
                 />
-                {/* <Input type="number" placeholder="Contact Number" disabled /> */}
               </Grid>
 
               <Grid container>
@@ -437,30 +435,6 @@ function Booking(props: any) {
                   </Typography>
 
                   <FormControl style={{ marginLeft: "20px", width: "50%" }}>
-                    {/* <TextField
-                      style={{ marginTop: "0px" }}
-                      id="outlined-select-gender"
-                      select
-                      label={gender === "" ? "Gender" : ""}
-                      className={classes.textField}
-                      value={gender}
-                      onChange={handleChange}
-                      InputLabelProps={{ shrink: false }}
-                      SelectProps={{
-                        MenuProps: {
-                          className: classes.menu,
-                        },
-                      }}
-                      size="small"
-                      margin="normal"
-                      variant="outlined"
-                    >
-                      {genders.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </TextField> */}
                     <InputLabel id="demo-simple-select-label">table</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
@@ -525,7 +499,7 @@ function Booking(props: any) {
               ))}
             </Grid>
             <Grid item xs={11}>
-              <Grid container justifyContent="center" spacing={spacing}>
+              <Grid container justifyContent="center" spacing={1}>
                 {[
                   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
                   18, 19, 20,
@@ -550,113 +524,6 @@ function Booking(props: any) {
                 ))}
               </Grid>
             </Grid>
-
-            {/* <Grid container>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 2,
-                  marginY: 1,
-                }}
-              >
-                <Button>Hair Cut</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-
-                  marginLeft: 1,
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-            </Grid> */}
           </Grid>
         </Grid>
       </Box>
@@ -667,13 +534,7 @@ function Booking(props: any) {
       </Modal>
       <Modal open={openPayment} onClose={handleClose1}>
         <Box sx={style}>
-          <Payment />
-        </Box>
-      </Modal>
-
-      <Modal open={openPayment} onClose={handleClose1}>
-        <Box sx={style}>
-          <Payment />
+          <Payment handleClose={handleClose1} />
         </Box>
       </Modal>
     </div>

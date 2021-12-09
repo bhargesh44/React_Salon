@@ -1,4 +1,4 @@
-import { Grid, Typography, Input, Button } from "@mui/material";
+import { Grid, Typography, Button, TextField } from "@mui/material";
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -102,13 +102,29 @@ export default function CustomerList(props: any) {
               <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                 Find Customer
               </Typography>
-              <Input placeholder="Customer" />
+
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                size="small"
+                sx={{ mt: 1, mb: 1 }}
+                InputProps={{ disableUnderline: true }}
+                placeholder="Customer"
+              />
             </Grid>
             <Grid item lg={6}>
               <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                 Find Mobile
               </Typography>
-              <Input placeholder="Mobile" />
+
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                size="small"
+                sx={{ mt: 1, mb: 1 }}
+                InputProps={{ disableUnderline: true }}
+                placeholder="Mobile"
+              />
             </Grid>
           </Grid>
         </Grid>

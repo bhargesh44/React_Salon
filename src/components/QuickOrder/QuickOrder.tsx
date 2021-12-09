@@ -80,12 +80,9 @@ export default function QuickOrder(props: any) {
     filter: true,
     resizable: true,
   };
-<<<<<<< HEAD
-=======
   const handleChanges = (event: SelectChangeEvent) => {
     setTable(event.target.value as string);
   };
->>>>>>> origin/dev_ak
   return (
     <div>
       <Typography variant="h5">Quick order</Typography>

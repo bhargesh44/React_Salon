@@ -4,7 +4,7 @@ import { AgGridReact } from "ag-grid-react";
 
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-import { Button, Grid, Typography, Box } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 export default function OrderList(props: any) {
   const { handleClose } = props;
   const data = [

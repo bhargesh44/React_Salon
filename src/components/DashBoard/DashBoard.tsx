@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography, TextField } from "@mui/material";
 import { AgGridReact } from "ag-grid-react";
-
+import "./dashBoard.css";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
@@ -119,9 +119,9 @@ export default function DashBoard() {
   };
   const [openQuickOrder, setOpenQuickOrder] = React.useState(false);
   const [openOrderList, setOpenOrderList] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openBooking, setOpenBooking] = React.useState(false);
+  const handleOpen = () => setOpenBooking(true);
+  const handleClose = () => setOpenBooking(false);
   const handleOpen1 = () => setOpenQuickOrder(true);
   const handleClose1 = () => setOpenQuickOrder(false);
   const handleOpen2 = () => setOpenOrderList(true);
@@ -137,22 +137,32 @@ export default function DashBoard() {
         mb={2}
         className="grid-wrap"
       >
-        <Typography variant="subtitle1" style={{ marginLeft: "50px" }}>
-          Customer:{" "}
-          <span style={{ color: "#90EE90", fontSize: "14px" }}>abc</span>
-        </Typography>
-        <Typography variant="subtitle1" style={{ marginLeft: "200px" }}>
-          Date Of Sale:{" "}
-          <span style={{ color: "#90EE90", fontSize: "14px" }}>
-            Dec 17,2021
-          </span>
-        </Typography>
-        <Typography variant="subtitle1" style={{ marginLeft: "200px" }}>
-          Appointment on:{" "}
-          <span style={{ color: "#90EE90", fontSize: "14px" }}>
-            Dec 17,2021
-          </span>
-        </Typography>
+        <Grid item lg={8} md={8} sm={8} xs={8}>
+          <Grid container>
+            <Grid item lg={4}>
+              <Typography variant="subtitle1" style={{ marginLeft: "50px" }}>
+                Customer:
+                <span style={{ color: "#90EE90", fontSize: "14px" }}>abc</span>
+              </Typography>
+            </Grid>
+            <Grid item lg={4}>
+              <Typography variant="subtitle1">
+                Date Of Sale:
+                <span style={{ color: "#90EE90", fontSize: "14px" }}>
+                  Dec 17,2021
+                </span>
+              </Typography>
+            </Grid>
+            <Grid item lg={4}>
+              <Typography variant="subtitle1">
+                Appointment on:
+                <span style={{ color: "#90EE90", fontSize: "14px" }}>
+                  Dec 17,2021
+                </span>
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
 
       <Grid container direction="row" spacing={2}>
@@ -169,14 +179,13 @@ export default function DashBoard() {
             />
           </div>
 
-          <input
-            placeholder="Enter Amount"
-            style={{
-              width: "100%",
-              height: "25px",
-
-              marginTop: "25px",
-            }}
+          <TextField
+            hiddenLabel
+            id="filled-hidden-label-small"
+            size="small"
+            sx={{ mt: 1, mb: 1, width: "100%", pl: 1 }}
+            InputProps={{ disableUnderline: true }}
+            placeholder="Customer"
           />
         </Grid>
         <Grid item lg={4} md={4} sm={4} xs={4}>
@@ -202,7 +211,6 @@ export default function DashBoard() {
             variant="outlined"
             onClick={handleOpen1}
             style={{ width: "50%", height: "75px", color: "black" }}
-            onClick={handleOpen1}
           >
             Quick Sale
           </Button>
@@ -216,7 +224,6 @@ export default function DashBoard() {
               marginTop: 5,
               color: "black",
             }}
-            onClick={handleOpen2}
           >
             <ListIcon color="primary" /> Order List
           </Button>
@@ -426,17 +433,6 @@ export default function DashBoard() {
       <Modal open={openOrderList} onClose={handleClose2}>
         <Box sx={style}>
           <OrderList handleClose={handleClose2} />
-        </Box>
-      </Modal>
-
-      <Modal open={openQuickOrder} onClose={handleClose1}>
-        <Box sx={style}>
-          <QuickOrder />
-        </Box>
-      </Modal>
-      <Modal open={openOrderList} onClose={handleClose2}>
-        <Box sx={style1}>
-          <OrderList />
         </Box>
       </Modal>
     </div>

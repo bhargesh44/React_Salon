@@ -2,24 +2,9 @@ import { Typography, Grid, Button, TextField } from "@mui/material";
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
 
-export default function Payment() {
+export default function Payment(props: any) {
+  const { handleClose } = props;
   const data = [
-    // {
-    //   productName: "a",
-    //   productDescription: "a",
-    //   employeeName: "a",
-    //   timeReq: "a",
-    //   qty: "1",
-    //   price: "$100.00",
-    // },
-    // {
-    //   productName: "a",
-    //   productDescription: "a",
-    //   employeeName: "a",
-    //   timeReq: "a",
-    //   qty: "1",
-    //   price: "$100.00",
-    // },
     {
       productName: "a",
       productDescription: "a",
@@ -104,13 +89,14 @@ export default function Payment() {
         </Typography>
         <Button
           variant="contained"
+          onClick={handleClose}
           style={{
             height: "25px",
             background: "orange",
             borderRadius: "15px",
             marginTop: "15px",
             marginBottom: "15px",
-            marginLeft: "50px",
+            marginLeft: "150px",
           }}
         >
           Close
