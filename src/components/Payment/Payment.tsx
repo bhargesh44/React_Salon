@@ -1,50 +1,47 @@
-import { Typography, Grid, Button } from "@mui/material";
+import { Typography, Grid, Button, TextField } from "@mui/material";
+import { AgGridReact } from "ag-grid-react";
 import React from "react";
 
-import { AgGridReact } from "ag-grid-react";
-
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 export default function Payment() {
   const data = [
+    // {
+    //   productName: "a",
+    //   productDescription: "a",
+    //   employeeName: "a",
+    //   timeReq: "a",
+    //   qty: "1",
+    //   price: "$100.00",
+    // },
+    // {
+    //   productName: "a",
+    //   productDescription: "a",
+    //   employeeName: "a",
+    //   timeReq: "a",
+    //   qty: "1",
+    //   price: "$100.00",
+    // },
     {
       productName: "a",
       productDescription: "a",
-      EmployeeName: "a",
+      employeeName: "a",
       timeReq: "a",
-      qty: 1,
+      qty: "1",
       price: "$100.00",
     },
     {
       productName: "a",
       productDescription: "a",
-      EmployeeName: "a",
+      employeeName: "a",
       timeReq: "a",
-      qty: 1,
+      qty: "1",
       price: "$100.00",
     },
     {
       productName: "a",
       productDescription: "a",
-      EmployeeName: "a",
+      employeeName: "a",
       timeReq: "a",
-      qty: 1,
-      price: "$100.00",
-    },
-    {
-      productName: "a",
-      productDescription: "a",
-      EmployeeName: "a",
-      timeReq: "a",
-      qty: 1,
-      price: "$100.00",
-    },
-    {
-      productName: "a",
-      productDescription: "a",
-      EmployeeName: "a",
-      timeReq: "a",
-      qty: 1,
+      qty: "1",
       price: "$100.00",
     },
   ];
@@ -74,7 +71,6 @@ export default function Payment() {
       field: "price",
     },
   ];
-
   const defaultColDef = {
     sortable: true,
     filter: true,
@@ -85,26 +81,25 @@ export default function Payment() {
       <Typography variant="h5">Payment </Typography>
       <Grid
         container
-        mt={1}
         style={{ background: "white", height: "50px", color: "black" }}
       >
-        <Typography variant="subtitle2" style={{ margin: "15px" }}>
+        <Typography variant="subtitle2" style={{ margin: "8px" }}>
           Date Of Sale: <span style={{ color: "red" }}>Dec 17,2021</span>
         </Typography>
-        <Typography variant="subtitle2" style={{ margin: "15px" }}>
+        <Typography variant="subtitle2" style={{ margin: "8px" }}>
           Appointment on: <span style={{ color: "red" }}>Dec 17,2021</span>
         </Typography>
-        <Typography variant="subtitle2" style={{ margin: "15px" }}>
+        <Typography variant="subtitle2" style={{ margin: "8px" }}>
           Bill No: <span style={{ color: "red" }}>4</span>
         </Typography>
-        <Typography variant="subtitle2" style={{ margin: "15px" }}>
+        <Typography variant="subtitle2" style={{ margin: "8px" }}>
           Order Type: <span style={{ color: "red" }}>BOK</span>
         </Typography>
-        <Typography variant="subtitle2" style={{ margin: "15px" }}>
+        <Typography variant="subtitle2" style={{ margin: "8px" }}>
           Table No: <br />
           <span style={{ color: "red" }}>Table-03</span>
         </Typography>
-        <Typography variant="subtitle2" style={{ margin: "15px" }}>
+        <Typography variant="subtitle2" style={{ margin: "8px" }}>
           Customer: <span style={{ color: "red" }}>max customer06</span>
         </Typography>
         <Button
@@ -210,14 +205,15 @@ export default function Payment() {
           </Grid>
         </Grid>
         <Grid item lg={6}>
-          <Grid container>
+          <Grid container sx={{ marginTop: "3px" }}>
             <Grid item lg={6}>
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -228,9 +224,10 @@ export default function Payment() {
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -241,9 +238,10 @@ export default function Payment() {
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -254,9 +252,10 @@ export default function Payment() {
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -267,9 +266,10 @@ export default function Payment() {
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -280,9 +280,10 @@ export default function Payment() {
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -293,9 +294,10 @@ export default function Payment() {
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -306,9 +308,10 @@ export default function Payment() {
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -319,9 +322,10 @@ export default function Payment() {
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -332,9 +336,10 @@ export default function Payment() {
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -345,9 +350,10 @@ export default function Payment() {
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -358,9 +364,10 @@ export default function Payment() {
               <Button
                 variant="contained"
                 style={{
-                  width: "33%",
+                  width: "30%",
                   height: "75px",
-                  marginBottom: 5,
+                  marginBottom: 2,
+                  marginRight: 2,
                   color: "orange",
                   fontWeight: "bold",
                   background: "white",
@@ -427,14 +434,15 @@ export default function Payment() {
           </Grid>
         </Grid>
       </Grid>
-
-      <Grid container mt={2} mb={2}>
-        <input
-          type="text"
-          placeholder="Enter Amount"
-          style={{ border: "2px solid black" }}
-        />
-      </Grid>
+      <TextField
+        hiddenLabel
+        id="filled-hidden-label-small"
+        variant="filled"
+        size="small"
+        sx={{ mt: 2, mb: 2 }}
+        InputProps={{ disableUnderline: true }}
+        placeholder="Enter Amount"
+      />
       <Grid container>
         <div className="ag-theme-alpine" style={{ height: 300, width: "100%" }}>
           <AgGridReact

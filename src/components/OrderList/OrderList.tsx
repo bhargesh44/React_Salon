@@ -4,8 +4,9 @@ import { AgGridReact } from "ag-grid-react";
 
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-import { Button, Grid, Typography } from "@mui/material";
-export default function OrderList() {
+import { Button, Grid, Typography, Box } from "@mui/material";
+export default function OrderList(props: any) {
+  const { handleClose } = props;
   const data = [
     {
       productName: "a",
@@ -113,7 +114,9 @@ export default function OrderList() {
             color: "white",
           }}
         />
-        <Button variant="text">Find by Customer</Button>
+        <Button variant="text" className="btn">
+          Find by Customer
+        </Button>
         <input
           style={{
             margin: "10px",
@@ -124,12 +127,15 @@ export default function OrderList() {
             color: "white",
           }}
         />
-        <Button variant="text">Find by Mobile</Button>
-        <Button variant="text" style={{ marginLeft: "25px" }}>
+        <Button variant="text" className="btn">
+          Find by Mobile
+        </Button>
+        <Button variant="text" className="btn" style={{ marginLeft: "25px" }}>
           Booking Order
         </Button>
         <Button
           variant="text"
+          className="btn"
           style={{
             marginLeft: "25px",
             marginTop: "5px",
@@ -139,7 +145,12 @@ export default function OrderList() {
         >
           Quick Orders
         </Button>
-        <Button variant="text" style={{ marginLeft: "25px" }}>
+        <Button
+          variant="text"
+          className="btn"
+          onClick={handleClose}
+          style={{ marginLeft: "25px" }}
+        >
           Close
         </Button>
       </Grid>

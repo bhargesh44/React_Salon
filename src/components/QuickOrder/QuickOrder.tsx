@@ -5,7 +5,9 @@ import {
   Grid,
   InputLabel,
   MenuItem,
+  Paper,
   Select,
+  SelectChangeEvent,
   Typography,
 } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -15,7 +17,9 @@ import { AgGridReact } from "ag-grid-react";
 
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-export default function QuickOrder() {
+export default function QuickOrder(props: any) {
+  const { handleClose } = props;
+  const [table, setTable] = React.useState("");
   const data = [
     {
       productName: "a",
@@ -76,6 +80,12 @@ export default function QuickOrder() {
     filter: true,
     resizable: true,
   };
+<<<<<<< HEAD
+=======
+  const handleChanges = (event: SelectChangeEvent) => {
+    setTable(event.target.value as string);
+  };
+>>>>>>> origin/dev_ak
   return (
     <div>
       <Typography variant="h5">Quick order</Typography>
@@ -90,9 +100,16 @@ export default function QuickOrder() {
           </Typography>
         </Grid>
         <Grid item lg={4}>
-          <Button variant="text">Update</Button>
-          <Button variant="text" style={{ marginLeft: "50px" }}>
-             Close
+          <Button variant="text" className="btn">
+            Update
+          </Button>
+          <Button
+            variant="text"
+            className="btn"
+            onClick={handleClose}
+            style={{ marginLeft: "50px" }}
+          >
+            Close
           </Button>
         </Grid>
       </Grid>
@@ -107,7 +124,6 @@ export default function QuickOrder() {
         sx={{
           display: "flex",
           justifyContent: "center",
-          border: "outset",
         }}
       >
         <Grid container>
@@ -129,7 +145,7 @@ export default function QuickOrder() {
               <Grid item lg={6}>
                 <input
                   placeholder="Enter Item Barcode"
-                  style={{ width: "100%", height: "25px", marginTop: "25px" }}
+                  style={{ width: "100%", height: "32px", marginTop: "25px" }}
                 />
               </Grid>
               <Grid item lg={6}>
@@ -142,8 +158,15 @@ export default function QuickOrder() {
                   }}
                 >
                   <InputLabel htmlFor="my-input">Select Chair</InputLabel>
-                  <Select id="my-input">
-                    <MenuItem value="table-01">Table-01</MenuItem>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={table}
+                    label="select chair"
+                    onChange={handleChanges}
+                    size="small"
+                  >
+                    <MenuItem value="table-01">select chair</MenuItem>
                     <MenuItem value="table-02">Table-02</MenuItem>
                     <MenuItem value="table-03">Table-03</MenuItem>
                     <MenuItem value="table-04">Table-04</MenuItem>
@@ -154,356 +177,60 @@ export default function QuickOrder() {
             </Grid>
           </Grid>
           <Grid item lg={6} md={6} sm={6} xs={6}>
-            <Grid container>
-              <Box
-                component="span"
-                sx={{
-                  width: "100px",
-                  height: "100px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginX: 2,
-                  marginY: 1,
-                }}
-              >
-                <Button>Hair Cut</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "100px",
-                  height: "100px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
+            <Grid
+              container
+              justifyContent="flex-start"
+              sx={{ marginLeft: "18px", marginBottom: "10px" }}
+              spacing={2}
+            >
+              {[0, 1].map((value) => (
+                <Grid key={value} item>
+                  <Paper
+                    sx={{
+                      height: 100,
+                      width: 100,
+                      border: "1px solid gray",
+                    }}
+                  >
+                    <Box
+                      component="span"
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginY: 2,
+                      }}
+                    >
+                      <Button>salon creams</Button>
+                    </Box>
+                  </Paper>
+                </Grid>
+              ))}
             </Grid>
-
-            <Grid container>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 2,
-                  marginY: 1,
-                }}
-              >
-                <Button>Hair Cut</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-
-                  marginLeft: 1,
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-            </Grid>
-
-            <Grid container>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 2,
-                  marginY: 1,
-                }}
-              >
-                <Button>Hair Cut</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-
-                  marginLeft: 1,
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-            </Grid>
-
-            <Grid container>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 2,
-                  marginY: 1,
-                }}
-              >
-                <Button>Hair Cut</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-
-                  marginLeft: 1,
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 1,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
+            <Grid item xs={11}>
+              <Grid container justifyContent="center" spacing={1}>
+                {[
+                  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+                  18, 19, 20,
+                ].map((value) => (
+                  <Grid key={value} item>
+                    <Paper
+                      sx={{ height: 100, width: 75, border: "1px solid gray" }}
+                    >
+                      {" "}
+                      <Box
+                        component="span"
+                        sx={{
+                          display: "flex",
+                          justifyContent: "center",
+                          marginY: 2,
+                        }}
+                      >
+                        <Button>Hair Cut</Button>
+                      </Box>
+                    </Paper>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

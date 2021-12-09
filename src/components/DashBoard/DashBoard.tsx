@@ -14,34 +14,18 @@ import ListIcon from "@mui/icons-material/List";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 import PendingOutlinedIcon from "@mui/icons-material/PendingOutlined";
 import QuickOrder from "../QuickOrder/QuickOrder";
-
-import "./dashBoard.css";
 import OrderList from "../OrderList/OrderList";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
   left: "50%",
+  transform: "translate(-50%, -50%)",
   width: "75%",
-  //height: "80%",
-  overFlow: "scroll",
-  transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
-  //border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
-};
-const style1 = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  width: "70%",
-  //height: "80%",
-  overFlow: "scroll",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  //border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
+  pl: 2,
+  pr: 2,
+  pb: 2,
 };
 export default function DashBoard() {
   const data = [
@@ -133,18 +117,15 @@ export default function DashBoard() {
     filter: true,
     resizable: true,
   };
-  const [openBooking, setOpenBooking] = React.useState(false);
-  const handleOpen = () => setOpenBooking(true);
-  const handleClose = () => setOpenBooking(false);
-
   const [openQuickOrder, setOpenQuickOrder] = React.useState(false);
+  const [openOrderList, setOpenOrderList] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const handleOpen1 = () => setOpenQuickOrder(true);
   const handleClose1 = () => setOpenQuickOrder(false);
-
-  const [openOrderList, setOpenOrderList] = React.useState(false);
   const handleOpen2 = () => setOpenOrderList(true);
   const handleClose2 = () => setOpenOrderList(false);
-
   return (
     <div>
       <Grid
@@ -156,20 +137,30 @@ export default function DashBoard() {
         mb={2}
         className="grid-wrap"
       >
-        <Typography variant="h6" style={{ marginLeft: "50px" }}>
-          Customer: <span className="greenColor">abc</span>
+        <Typography variant="subtitle1" style={{ marginLeft: "50px" }}>
+          Customer:{" "}
+          <span style={{ color: "#90EE90", fontSize: "14px" }}>abc</span>
         </Typography>
-        <Typography variant="h6" style={{ marginLeft: "200px" }}>
-          Date Of Sale: <span className="greenColor">Dec 17,2021</span>
+        <Typography variant="subtitle1" style={{ marginLeft: "200px" }}>
+          Date Of Sale:{" "}
+          <span style={{ color: "#90EE90", fontSize: "14px" }}>
+            Dec 17,2021
+          </span>
         </Typography>
-        <Typography variant="h6" style={{ marginLeft: "200px" }}>
-          Appointment on: <span className="greenColor">Dec 17,2021</span>
+        <Typography variant="subtitle1" style={{ marginLeft: "200px" }}>
+          Appointment on:{" "}
+          <span style={{ color: "#90EE90", fontSize: "14px" }}>
+            Dec 17,2021
+          </span>
         </Typography>
       </Grid>
 
       <Grid container direction="row" spacing={2}>
         <Grid item lg={8} md={8} sm={8} xs={8}>
-          <div className="ag-theme-alpine table-wrap">
+          <div
+            className="ag-theme-alpine"
+            style={{ height: 700, width: "100%", paddingLeft: "8px" }}
+          >
             <AgGridReact
               rowData={data}
               columnDefs={columns}
@@ -180,13 +171,23 @@ export default function DashBoard() {
 
           <input
             placeholder="Enter Amount"
-            style={{ width: "100%", height: "25px", marginTop: "25px" }}
+            style={{
+              width: "100%",
+              height: "25px",
+
+              marginTop: "25px",
+            }}
           />
         </Grid>
         <Grid item lg={4} md={4} sm={4} xs={4}>
           <Button
             variant="contained"
-            style={{ width: "100%", height: "75px", marginBottom: 5 }}
+            style={{
+              width: "100%",
+              height: "75px",
+              marginBottom: 5,
+              background: "#383b39",
+            }}
           >
             <ListIcon />
           </Button>
@@ -201,6 +202,7 @@ export default function DashBoard() {
             variant="outlined"
             onClick={handleOpen1}
             style={{ width: "50%", height: "75px", color: "black" }}
+            onClick={handleOpen1}
           >
             Quick Sale
           </Button>
@@ -214,6 +216,7 @@ export default function DashBoard() {
               marginTop: 5,
               color: "black",
             }}
+            onClick={handleOpen2}
           >
             <ListIcon color="primary" /> Order List
           </Button>
@@ -233,9 +236,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             7
@@ -245,9 +249,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             8
@@ -257,9 +262,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             9
@@ -269,9 +275,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             4
@@ -281,9 +288,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             5
@@ -293,9 +301,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             6
@@ -305,9 +314,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             1
@@ -317,9 +327,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             2
@@ -329,9 +340,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             3
@@ -341,9 +353,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             .
@@ -353,9 +366,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             0
@@ -365,9 +379,10 @@ export default function DashBoard() {
             style={{
               width: "33%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "orange",
               fontWeight: "bold",
+              background: "#383b39",
             }}
           >
             C
@@ -377,7 +392,7 @@ export default function DashBoard() {
             style={{
               width: "100%",
               height: "75px",
-              marginBottom: 5,
+              marginBottom: 2,
               color: "black",
             }}
           >
@@ -400,7 +415,17 @@ export default function DashBoard() {
 
       <Modal open={openBooking} onClose={handleClose}>
         <Box sx={style}>
-          <Booking />
+          <Booking handleClose={handleClose} />
+        </Box>
+      </Modal>
+      <Modal open={openQuickOrder} onClose={handleClose1}>
+        <Box sx={style}>
+          <QuickOrder handleClose={handleClose1} />
+        </Box>
+      </Modal>
+      <Modal open={openOrderList} onClose={handleClose2}>
+        <Box sx={style}>
+          <OrderList handleClose={handleClose2} />
         </Box>
       </Modal>
 
