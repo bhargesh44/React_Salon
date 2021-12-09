@@ -6,7 +6,8 @@ import { AgGridReact } from "ag-grid-react";
 
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-export default function CustomerList() {
+export default function CustomerList(props: any) {
+  const { handleClose } = props;
   const data = [
     {
       customerCode: "a",
@@ -78,27 +79,35 @@ export default function CustomerList() {
   return (
     <div>
       <Grid container>
-        <Grid item lg={6}>
-          <Typography variant="h5">Choose a Customer</Typography>
+        <Grid item lg={6} className="color-wrap">
+          <Typography variant="h6" sx={{ fontWeight: 600 }}>
+            Choose a Customer
+          </Typography>
         </Grid>
         <Grid item lg={6} display="flex" justifyContent="end">
-          <CloseIcon />
+          <CloseIcon onClick={handleClose} />
         </Grid>
       </Grid>
 
       <Grid container mt={4} ml={5}>
-        <Typography variant="h4">Select Orders</Typography>
+        <Typography variant="h5" sx={{ fontWeight: 600 }}>
+          Select Orders
+        </Typography>
       </Grid>
 
       <Grid container mt={4} ml={5}>
         <Grid item lg={6}>
           <Grid container>
             <Grid item lg={6}>
-              <Typography variant="h6">Find Customer</Typography>
+              <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                Find Customer
+              </Typography>
               <Input placeholder="Customer" />
             </Grid>
             <Grid item lg={6}>
-              <Typography variant="h6">Find Mobile</Typography>
+              <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                Find Mobile
+              </Typography>
               <Input placeholder="Mobile" />
             </Grid>
           </Grid>

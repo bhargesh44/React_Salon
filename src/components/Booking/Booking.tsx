@@ -6,10 +6,11 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
   Typography,
 } from "@mui/material";
-
+import Paper from "@mui/material/Paper";
 import CloseIcon from "@mui/icons-material/Close";
 
 import React, { useState } from "react";
@@ -29,6 +30,8 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import CustomerList from "../CustomerList/CustomerList";
+import makeStyles from "@mui/styles/makeStyles";
+import Payment from "../Payment/Payment";
 
 const style = {
   position: "absolute" as "absolute",
@@ -37,19 +40,55 @@ const style = {
   width: "1200px",
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
+  pl: 2,
+  pb: 2,
+  pr: 2,
 };
 
-function Booking() {
+const genders = [
+  {
+    value: "M",
+    label: "Male",
+  },
+  {
+    value: "F",
+    label: "Female",
+  },
+  {
+    value: "O",
+    label: "Other",
+  },
+];
+
+const useStyles = makeStyles((theme: any) => ({
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  textField: {
+    width: 100,
+  },
+  dense: {},
+  menu: {
+    width: 100,
+  },
+}));
+
+function Booking(props: any) {
+  const { handleClose } = props;
+  const classes = useStyles();
+  const [openPayment, setOpenPayment] = React.useState(false);
+  const [spacing, setSpacing] = React.useState(1);
+  const [table, setTable] = React.useState("");
+  const [gender, setGender] = React.useState("");
   const [startDate, setStartDate] = useState<any>(null);
   const [timeFrom, setTimeFrom] = useState<any>(null);
   const [timeTo, setTimeTo] = useState<any>(null);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const Close = () => setOpen(false);
   const data = [
     {
       productName: "a",
@@ -133,6 +172,15 @@ function Booking() {
       ),
     },
   ];
+  const handleOpen1 = () => setOpenPayment(true);
+  const handleClose1 = () => setOpenPayment(false);
+  const handleChanges = (event: SelectChangeEvent) => {
+    setTable(event.target.value as string);
+  };
+
+  const handleChange = (event: any) => {
+    setGender(event.target.value);
+  };
 
   const defaultColDef = {
     sortable: true,
@@ -141,7 +189,9 @@ function Booking() {
   };
   return (
     <div>
-      <Typography variant="h5">Booking</Typography>
+      <Typography variant="h5" style={{ fontWeight: 600 }}>
+        Booking
+      </Typography>
       <Grid
         container
         style={{ background: "black", height: "50px", color: "white" }}
@@ -155,13 +205,13 @@ function Booking() {
           <Button variant="text" className="btn">
             Update
           </Button>
-          <Button variant="text" className="btn">
+          <Button variant="text" className="btn" onClick={handleOpen1}>
             Payment
           </Button>
           <Button variant="text" className="btn">
             Edit
           </Button>
-          <Button variant="text" className="btn">
+          <Button variant="text" onClick={handleClose} className="btn">
             <CloseIcon />
             Close
           </Button>
@@ -178,6 +228,7 @@ function Booking() {
           display: "flex",
           justifyContent: "center",
           border: "1px solid grey",
+          pt: "15px",
         }}
       >
         <Grid container>
@@ -193,31 +244,61 @@ function Booking() {
           >
             <Grid container ml={1} mb={2}>
               <Grid item lg={8} md={8} sm={8} xs={8} mb={2}>
-                <Typography variant="h6" style={{ marginBottom: "10px" }}>
+                <Typography
+                  variant="subtitle1"
+                  style={{
+                    marginBottom: "10px",
+                    fontSize: "14",
+                    fontWeight: "600",
+                  }}
+                >
                   Customers*
                 </Typography>
                 <Input
                   placeholder="Customer Name"
-                  style={{ width: "350px", marginRight: "10px" }}
+                  style={{ width: "80%", marginRight: "10px" }}
                 />
                 <Button
                   variant="contained"
                   color="success"
                   onClick={handleOpen}
+                  style={{ borderRadius: "12px" }}
                 >
                   List
                 </Button>
               </Grid>
               <Grid item lg={4} md={4} sm={4} xs={4} mb={2}>
-                <Typography variant="h6" style={{ marginBottom: "10px" }}>
+                <Typography
+                  variant="subtitle1"
+                  style={{
+                    marginBottom: "10px",
+                    fontSize: "14",
+                    fontWeight: "600",
+                  }}
+                >
                   Contact Number*
                 </Typography>
-                <Input type="number" placeholder="Contact Number" disabled />
+                <TextField
+                  hiddenLabel
+                  id="filled-hidden-label-small"
+                  defaultValue="Contact Number"
+                  variant="filled"
+                  size="small"
+                  InputProps={{ disableUnderline: true }}
+                />
+                {/* <Input type="number" placeholder="Contact Number" disabled /> */}
               </Grid>
 
               <Grid container>
                 <Grid item lg={3} md={3} sm={3} xs={3}>
-                  <Typography variant="h6" style={{ marginBottom: "10px" }}>
+                  <Typography
+                    variant="subtitle1"
+                    style={{
+                      marginBottom: "10px",
+                      fontSize: "14",
+                      fontWeight: "600",
+                    }}
+                  >
                     Appointment Date
                   </Typography>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -227,27 +308,60 @@ function Booking() {
                       onChange={(newStartDate) => {
                         setStartDate(moment(newStartDate).format("YYYY-MM-DD"));
                       }}
-                      renderInput={(params) => <TextField {...params} />}
+                      renderInput={(params) => (
+                        <TextField size="small" {...params} />
+                      )}
                     />
                   </LocalizationProvider>
                 </Grid>
                 <Grid item lg={3} md={3} sm={3} xs={3}>
                   <Typography
-                    variant="h6"
-                    style={{ marginLeft: "20px", marginBottom: "10px" }}
+                    variant="subtitle1"
+                    style={{
+                      marginLeft: "30px",
+                      marginBottom: "10px",
+                      fontSize: "14",
+                      fontWeight: "600",
+                    }}
                   >
                     Gender
                   </Typography>
-                  <FormControl style={{ marginLeft: "20px", width: "50%" }}>
-                    <InputLabel htmlFor="my-input">Gender</InputLabel>
-                    <Select id="my-input" disabled>
-                      <MenuItem value="male">Male</MenuItem>
-                      <MenuItem value="female">Female</MenuItem>
-                    </Select>
+                  <FormControl style={{ width: "50%", marginLeft: "30px" }}>
+                    <TextField
+                      style={{ marginTop: "0px" }}
+                      id="outlined-select-gender"
+                      select
+                      label={gender === "" ? "Gender" : ""}
+                      className={classes.textField}
+                      value={gender}
+                      onChange={handleChange}
+                      InputLabelProps={{ shrink: false }}
+                      SelectProps={{
+                        MenuProps: {
+                          className: classes.menu,
+                        },
+                      }}
+                      size="small"
+                      margin="normal"
+                      variant="outlined"
+                    >
+                      {genders.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
                   </FormControl>
                 </Grid>
                 <Grid item lg={3} md={3} sm={3} xs={3}>
-                  <Typography variant="h6" style={{ marginBottom: "10px" }}>
+                  <Typography
+                    variant="subtitle1"
+                    style={{
+                      marginBottom: "10px",
+                      fontSize: "14",
+                      fontWeight: "600",
+                    }}
+                  >
                     Source From
                   </Typography>
 
@@ -258,8 +372,13 @@ function Booking() {
               <Grid container>
                 <Grid item lg={4} md={4} sm={4} xs={4}>
                   <Typography
-                    variant="h6"
-                    style={{ marginBottom: "10px", marginTop: "10px" }}
+                    variant="subtitle1"
+                    style={{
+                      marginBottom: "10px",
+                      marginTop: "10px",
+                      fontSize: "14",
+                      fontWeight: "600",
+                    }}
                   >
                     Time From :
                   </Typography>
@@ -270,16 +389,20 @@ function Booking() {
                       onChange={(newValue) => {
                         setTimeFrom(newValue);
                       }}
-                      renderInput={(params) => <TextField {...params} />}
+                      renderInput={(params) => (
+                        <TextField size="small" {...params} />
+                      )}
                     />
                   </LocalizationProvider>
                 </Grid>
                 <Grid item lg={4} md={4} sm={4} xs={4}>
                   <Typography
-                    variant="h6"
+                    variant="subtitle1"
                     style={{
                       marginBottom: "10px",
                       marginTop: "10px",
+                      fontSize: "14",
+                      fontWeight: "600",
                     }}
                   >
                     Time To:
@@ -291,30 +414,63 @@ function Booking() {
                       onChange={(newValue) => {
                         setTimeTo(newValue);
                       }}
-                      renderInput={(params) => <TextField {...params} />}
+                      renderInput={(params) => (
+                        <TextField size="small" {...params} />
+                      )}
                     />
                   </LocalizationProvider>
                 </Grid>
                 <Grid item lg={4} md={4} sm={4} xs={4}>
                   <Typography
-                    variant="h6"
+                    variant="subtitle1"
                     style={{
                       marginBottom: "10px",
                       marginTop: "10px",
                       marginLeft: "20px",
+                      fontSize: "14",
+                      fontWeight: "600",
                     }}
                   >
                     Chair:
                   </Typography>
 
                   <FormControl style={{ marginLeft: "20px", width: "50%" }}>
-                    <InputLabel htmlFor="my-input">Chair</InputLabel>
-                    <Select id="my-input">
-                      <MenuItem value="table-01">Table-01</MenuItem>
-                      <MenuItem value="table-02">Table-02</MenuItem>
-                      <MenuItem value="table-03">Table-03</MenuItem>
-                      <MenuItem value="table-04">Table-04</MenuItem>
-                      <MenuItem value="table-05">Table-05</MenuItem>
+                    {/* <TextField
+                      style={{ marginTop: "0px" }}
+                      id="outlined-select-gender"
+                      select
+                      label={gender === "" ? "Gender" : ""}
+                      className={classes.textField}
+                      value={gender}
+                      onChange={handleChange}
+                      InputLabelProps={{ shrink: false }}
+                      SelectProps={{
+                        MenuProps: {
+                          className: classes.menu,
+                        },
+                      }}
+                      size="small"
+                      margin="normal"
+                      variant="outlined"
+                    >
+                      {genders.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField> */}
+                    <InputLabel id="demo-simple-select-label">table</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={table}
+                      label="table"
+                      onChange={handleChanges}
+                      size="small"
+                    >
+                      <MenuItem value={10}>Table-01</MenuItem>
+                      <MenuItem value={20}>Table-02</MenuItem>
+                      <MenuItem value={30}>Table-03</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -337,38 +493,63 @@ function Booking() {
           </Grid>
 
           <Grid item lg={6} md={6} sm={6} xs={6}>
-            <Grid container>
-              <Box
-                component="span"
-                sx={{
-                  width: "100px",
-                  height: "100px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginX: 3,
-                  marginY: 2,
-                }}
-              >
-                <Button>Hair Cut</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "100px",
-                  height: "100px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
+            <Grid
+              container
+              justifyContent="flex-start"
+              sx={{ marginLeft: "18px", marginBottom: "10px" }}
+              spacing={2}
+            >
+              {[0, 1].map((value) => (
+                <Grid key={value} item>
+                  <Paper
+                    sx={{
+                      height: 100,
+                      width: 100,
+                      border: "1px solid gray",
+                    }}
+                  >
+                    <Box
+                      component="span"
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginY: 2,
+                      }}
+                    >
+                      <Button>salon creams</Button>
+                    </Box>
+                  </Paper>
+                </Grid>
+              ))}
+            </Grid>
+            <Grid item xs={11}>
+              <Grid container justifyContent="center" spacing={spacing}>
+                {[
+                  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+                  18, 19, 20,
+                ].map((value) => (
+                  <Grid key={value} item>
+                    <Paper
+                      sx={{ height: 100, width: 75, border: "1px solid gray" }}
+                    >
+                      {" "}
+                      <Box
+                        component="span"
+                        sx={{
+                          display: "flex",
+                          justifyContent: "center",
+                          marginY: 2,
+                        }}
+                      >
+                        <Button>Hair Cut</Button>
+                      </Box>
+                    </Paper>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
 
-            <Grid container>
+            {/* <Grid container>
               <Box
                 component="span"
                 sx={{
@@ -473,227 +654,18 @@ function Booking() {
               >
                 <Button>Bath</Button>
               </Box>
-            </Grid>
-
-            <Grid container>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 3,
-                  marginY: 2,
-                }}
-              >
-                <Button>Hair Cut</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-
-                  marginLeft: 1,
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-            </Grid>
-
-            <Grid container>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 3,
-                  marginY: 2,
-                }}
-              >
-                <Button>Hair Cut</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-
-                  marginLeft: 1,
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-              <Box
-                component="span"
-                sx={{
-                  width: "90px",
-                  height: "110px",
-                  display: "flex",
-                  justifyContent: "center",
-                  border: "1px solid grey",
-                  marginLeft: 1,
-
-                  marginY: 2,
-                }}
-              >
-                <Button>Bath</Button>
-              </Box>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
       </Box>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <CustomerList />
+          <CustomerList handleClose={Close} />
+        </Box>
+      </Modal>
+      <Modal open={openPayment} onClose={handleClose1}>
+        <Box sx={style}>
+          <Payment />
         </Box>
       </Modal>
     </div>
