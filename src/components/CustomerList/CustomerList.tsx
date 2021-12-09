@@ -108,7 +108,7 @@ export default function CustomerList() {
       </Grid>
 
       <Grid container mt={4}>
-        <Grid item lg={8}>
+        <Grid item lg={8} md={8} sm={8} xs={8}>
           <div
             className="ag-theme-alpine"
             style={{ height: 400, width: "100%" }}
@@ -121,7 +121,7 @@ export default function CustomerList() {
             />
           </div>
         </Grid>
-        <Grid item lg={4}></Grid>
+        <Grid item lg={4} md={4} sm={4} xs={4}></Grid>
       </Grid>
     </div>
   );

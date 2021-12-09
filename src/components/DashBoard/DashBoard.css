@@ -1,0 +1,12 @@
+.grid-wrap {
+  background-color: black;
+  height: 30px;
+  color: white;
+}
+.greenColor {
+  color: green;
+}
+.table-wrap{
+    width: 100%;
+    height: 700px;
+}

@@ -13,14 +13,33 @@ import Modal from "@mui/material/Modal";
 import ListIcon from "@mui/icons-material/List";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 import PendingOutlinedIcon from "@mui/icons-material/PendingOutlined";
+import QuickOrder from "../QuickOrder/QuickOrder";
+
+import "./dashBoard.css";
+import OrderList from "../OrderList/OrderList";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
   left: "50%",
-  width: "1500px",
+  width: "75%",
+  //height: "80%",
+  overFlow: "scroll",
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  //border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+const style1 = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  width: "70%",
+  //height: "80%",
+  overFlow: "scroll",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  //border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -114,9 +133,18 @@ export default function DashBoard() {
     filter: true,
     resizable: true,
   };
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openBooking, setOpenBooking] = React.useState(false);
+  const handleOpen = () => setOpenBooking(true);
+  const handleClose = () => setOpenBooking(false);
+
+  const [openQuickOrder, setOpenQuickOrder] = React.useState(false);
+  const handleOpen1 = () => setOpenQuickOrder(true);
+  const handleClose1 = () => setOpenQuickOrder(false);
+
+  const [openOrderList, setOpenOrderList] = React.useState(false);
+  const handleOpen2 = () => setOpenOrderList(true);
+  const handleClose2 = () => setOpenOrderList(false);
+
   return (
     <div>
       <Grid
@@ -126,25 +154,22 @@ export default function DashBoard() {
         justifyContent="start"
         mt={2}
         mb={2}
-        style={{ background: "black", height: "30px", color: "white" }}
+        className="grid-wrap"
       >
         <Typography variant="h6" style={{ marginLeft: "50px" }}>
-          Customer: <span style={{ color: "green" }}>abc</span>
+          Customer: <span className="greenColor">abc</span>
         </Typography>
         <Typography variant="h6" style={{ marginLeft: "200px" }}>
-          Date Of Sale: <span style={{ color: "green" }}>Dec 17,2021</span>
+          Date Of Sale: <span className="greenColor">Dec 17,2021</span>
         </Typography>
         <Typography variant="h6" style={{ marginLeft: "200px" }}>
-          Appointment on: <span style={{ color: "green" }}>Dec 17,2021</span>
+          Appointment on: <span className="greenColor">Dec 17,2021</span>
         </Typography>
       </Grid>
 
       <Grid container direction="row" spacing={2}>
         <Grid item lg={8} md={8} sm={8} xs={8}>
-          <div
-            className="ag-theme-alpine"
-            style={{ height: 700, width: "100%" }}
-          >
+          <div className="ag-theme-alpine table-wrap">
             <AgGridReact
               rowData={data}
               columnDefs={columns}
@@ -174,12 +199,14 @@ export default function DashBoard() {
           </Button>
           <Button
             variant="outlined"
+            onClick={handleOpen1}
             style={{ width: "50%", height: "75px", color: "black" }}
           >
             Quick Sale
           </Button>
           <Button
             variant="outlined"
+            onClick={handleOpen2}
             style={{
               width: "100%",
               height: "75px",
@@ -371,9 +398,20 @@ export default function DashBoard() {
         </Grid>
       </Grid>
 
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={openBooking} onClose={handleClose}>
         <Box sx={style}>
           <Booking />
+        </Box>
+      </Modal>
+
+      <Modal open={openQuickOrder} onClose={handleClose1}>
+        <Box sx={style}>
+          <QuickOrder />
+        </Box>
+      </Modal>
+      <Modal open={openOrderList} onClose={handleClose2}>
+        <Box sx={style1}>
+          <OrderList />
         </Box>
       </Modal>
     </div>
