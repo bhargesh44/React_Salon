@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import CloseIcon from "@mui/icons-material/Close";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import React, { useState } from "react";
 import "./booking.css";
@@ -22,10 +23,10 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 import { TimePicker } from "@mui/lab";
 
-import { AgGridReact } from "ag-grid-react";
+// import { AgGridReact } from "ag-grid-react";
 
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+// import "ag-grid-community/dist/styles/ag-grid.css";
+// import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -90,85 +91,106 @@ function Booking(props: any) {
   const Close = () => setOpenList(false);
   const data = [
     {
-      productName: "a",
-      productDescription: "a",
+      id: 1,
+      productName: "facial package-1",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
       price: "$100.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 2,
+      productName: "facial package-2",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$350.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 3,
+      productName: "facial package-3",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$250.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 4,
+      productName: "facial package-4",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$250.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 5,
+      productName: "facial package-5",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$250.00",
+    },
+    {
+      id: 6,
+      productName: "new year package-1",
+      productDescription: "facial packages",
+      employeeName: "a",
+      timeReq: "a",
+      qty: "1",
+      price: "$3000.00",
     },
   ];
-  const columns = [
+  const columns: GridColDef[] = [
     {
       headerName: "Product Name",
       field: "productName",
+      width: 125,
     },
     {
       headerName: "Product Description",
       field: "productDescription",
+      width: 125,
     },
     {
       headerName: "Employee Name",
       field: "employeeName",
+      width: 125,
     },
     {
       headerName: "Time Req",
       field: "timeReq",
+      width: 75,
     },
     {
       headerName: "Qty",
       field: "qty",
+      width: 95,
     },
     {
       headerName: "Price",
       field: "price",
+      width: 75,
     },
     {
-      headerName: "Actions",
+      headerName: "Action",
       field: "id",
-      cellRendererFramework: () => (
-        <div>
-          <Button
-            variant="text"
-            color="success"
-            onClick={() => window.confirm("You want to Delete this Data!!")}
-          >
+      width: 60,
+
+      renderCell: () => {
+        const onClick = () => {
+          window.confirm("you want to delete this data!!");
+        };
+        return (
+          <Button variant="text" color="success" onClick={onClick}>
             Delete
           </Button>
-        </div>
-      ),
+        );
+      },
     },
   ];
   const handleOpen1 = () => setOpenPayment(true);
@@ -181,23 +203,14 @@ function Booking(props: any) {
     setGender(event.target.value);
   };
 
-  const defaultColDef = {
-    sortable: true,
-    filter: true,
-    resizable: true,
-  };
   return (
     <div>
-      <Typography variant="h5" style={{ fontWeight: 600 }}>
+      <Typography variant="h5" fontWeight={600}>
         Booking
       </Typography>
-      <Grid
-        container
-        mt={1}
-        style={{ background: "black", height: "50px", color: "white" }}
-      >
+      <Grid container mt={1} height={50} className="grid_wrap">
         <Grid item lg={8}>
-          <Typography variant="subtitle1" style={{ marginLeft: "25px" }}>
+          <Typography variant="subtitle1" marginLeft="25px">
             Booking no :
           </Typography>
         </Grid>
@@ -217,20 +230,14 @@ function Booking(props: any) {
           </Button>
         </Grid>
       </Grid>
-      <Grid
-        container
-        mb={2}
-        style={{ background: "orange", height: "10px" }}
-      ></Grid>
+      <Grid container mb={2} height={10} className="second_grid"></Grid>
 
       <Box
         component="span"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          border: "1px solid grey",
-          pt: "15px",
-        }}
+        display="flex"
+        justifyContent="center"
+        border="1px solid grey"
+        pt="15px"
       >
         <Grid container mt={1}>
           <Grid
@@ -247,23 +254,18 @@ function Booking(props: any) {
               <Grid item lg={8} md={8} sm={8} xs={8} mb={2}>
                 <Typography
                   variant="subtitle1"
-                  style={{
-                    marginBottom: "10px",
-                    fontSize: "14",
-                    fontWeight: "600",
-                  }}
+                  marginBottom="10px"
+                  fontSize={16}
+                  fontWeight={600}
                 >
                   Customers*
                 </Typography>
-                <Input
-                  placeholder="Customer Name"
-                  style={{ width: "80%", marginRight: "10px" }}
-                />
+                <Input placeholder="Customer Name" className="customer_input" />
                 <Button
                   variant="contained"
                   color="success"
                   onClick={handleOpen}
-                  style={{ borderRadius: "12px" }}
+                  className="list_btn"
                 >
                   List
                 </Button>
@@ -271,11 +273,9 @@ function Booking(props: any) {
               <Grid item lg={4} md={4} sm={4} xs={4} mb={2}>
                 <Typography
                   variant="subtitle1"
-                  style={{
-                    marginBottom: "10px",
-                    fontSize: "14",
-                    fontWeight: "600",
-                  }}
+                  marginBottom="10px"
+                  fontSize={16}
+                  fontWeight={600}
                 >
                   Contact Number*
                 </Typography>
@@ -293,11 +293,9 @@ function Booking(props: any) {
                 <Grid item lg={3} md={3} sm={3} xs={3}>
                   <Typography
                     variant="subtitle1"
-                    style={{
-                      marginBottom: "10px",
-                      fontSize: "14",
-                      fontWeight: "600",
-                    }}
+                    marginBottom="10px"
+                    fontSize={16}
+                    fontWeight={600}
                   >
                     Appointment Date
                   </Typography>
@@ -317,16 +315,14 @@ function Booking(props: any) {
                 <Grid item lg={3} md={3} sm={3} xs={3}>
                   <Typography
                     variant="subtitle1"
-                    style={{
-                      marginLeft: "30px",
-                      marginBottom: "10px",
-                      fontSize: "14",
-                      fontWeight: "600",
-                    }}
+                    marginBottom="10px"
+                    fontSize={16}
+                    fontWeight={600}
+                    marginLeft="30px"
                   >
                     Gender
                   </Typography>
-                  <FormControl style={{ width: "50%", marginLeft: "30px" }}>
+                  <FormControl className="gender">
                     <TextField
                       style={{ marginTop: "0px" }}
                       id="outlined-select-gender"
@@ -356,11 +352,9 @@ function Booking(props: any) {
                 <Grid item lg={3} md={3} sm={3} xs={3}>
                   <Typography
                     variant="subtitle1"
-                    style={{
-                      marginBottom: "10px",
-                      fontSize: "14",
-                      fontWeight: "600",
-                    }}
+                    marginBottom="10px"
+                    fontSize={16}
+                    fontWeight={600}
                   >
                     Source From
                   </Typography>
@@ -373,12 +367,10 @@ function Booking(props: any) {
                 <Grid item lg={4} md={4} sm={4} xs={4}>
                   <Typography
                     variant="subtitle1"
-                    style={{
-                      marginBottom: "10px",
-                      marginTop: "10px",
-                      fontSize: "14",
-                      fontWeight: "600",
-                    }}
+                    marginBottom="10px"
+                    fontSize={16}
+                    fontWeight={600}
+                    marginTop="10px"
                   >
                     Time From :
                   </Typography>
@@ -398,12 +390,10 @@ function Booking(props: any) {
                 <Grid item lg={4} md={4} sm={4} xs={4}>
                   <Typography
                     variant="subtitle1"
-                    style={{
-                      marginBottom: "10px",
-                      marginTop: "10px",
-                      fontSize: "14",
-                      fontWeight: "600",
-                    }}
+                    marginBottom="10px"
+                    fontSize={16}
+                    fontWeight={600}
+                    marginTop="10px"
                   >
                     Time To:
                   </Typography>
@@ -423,18 +413,16 @@ function Booking(props: any) {
                 <Grid item lg={4} md={4} sm={4} xs={4}>
                   <Typography
                     variant="subtitle1"
-                    style={{
-                      marginBottom: "10px",
-                      marginTop: "10px",
-                      marginLeft: "20px",
-                      fontSize: "14",
-                      fontWeight: "600",
-                    }}
+                    marginBottom="10px"
+                    marginTop="10px"
+                    marginLeft="20px"
+                    fontSize={16}
+                    fontWeight={600}
                   >
                     Chair:
                   </Typography>
 
-                  <FormControl style={{ marginLeft: "20px", width: "50%" }}>
+                  <FormControl className="chair">
                     <InputLabel id="demo-simple-select-label">table</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
@@ -452,8 +440,8 @@ function Booking(props: any) {
                 </Grid>
               </Grid>
 
-              <Grid container>
-                <div
+              <Grid container mt={1}>
+                {/* <div
                   className="ag-theme-alpine"
                   style={{ height: 350, width: "100%" }}
                 >
@@ -463,6 +451,10 @@ function Booking(props: any) {
                     defaultColDef={defaultColDef}
                     animateRows={true}
                   />
+                </div> */}
+
+                <div style={{ height: 350, width: "100%" }}>
+                  <DataGrid rows={data} columns={columns} pageSize={5} />
                 </div>
               </Grid>
             </Grid>
@@ -472,25 +464,18 @@ function Booking(props: any) {
             <Grid
               container
               justifyContent="flex-start"
-              sx={{ marginLeft: "18px", marginBottom: "10px" }}
+              marginLeft="18px"
+              marginBottom="10px"
               spacing={2}
             >
               {[0, 1].map((value) => (
                 <Grid key={value} item>
-                  <Paper
-                    sx={{
-                      height: 100,
-                      width: 100,
-                      border: "1px solid gray",
-                    }}
-                  >
+                  <Paper className="paper-wrap">
                     <Box
                       component="span"
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        marginY: 2,
-                      }}
+                      display="flex"
+                      justifyContent="center"
+                      marginY={2}
                     >
                       <Button>salon creams</Button>
                     </Box>
@@ -505,17 +490,12 @@ function Booking(props: any) {
                   18, 19, 20,
                 ].map((value) => (
                   <Grid key={value} item>
-                    <Paper
-                      sx={{ height: 100, width: 75, border: "1px solid gray" }}
-                    >
-                      {" "}
+                    <Paper className="paper-wrap-1">
                       <Box
                         component="span"
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                          marginY: 2,
-                        }}
+                        display="flex"
+                        justifyContent="center"
+                        marginY={2}
                       >
                         <Button>Hair Cut</Button>
                       </Box>

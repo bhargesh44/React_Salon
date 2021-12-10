@@ -1,167 +1,144 @@
 import React from "react";
+import "./orderList.css";
+// import { AgGridReact } from "ag-grid-react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-import { AgGridReact } from "ag-grid-react";
-
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+// import "ag-grid-community/dist/styles/ag-grid.css";
+// import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { Button, Grid, Typography } from "@mui/material";
 export default function OrderList(props: any) {
   const { handleClose } = props;
   const data = [
     {
-      productName: "a",
-      productDescription: "a",
+      id: 1,
+      productName: "facial package-1",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
       price: "$100.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 2,
+      productName: "facial package-2",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$350.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 3,
+      productName: "facial package-3",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$250.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 4,
+      productName: "facial package-4",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$250.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 5,
+      productName: "facial package-5",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$250.00",
+    },
+    {
+      id: 6,
+      productName: "new year package-1",
+      productDescription: "facial packages",
+      employeeName: "a",
+      timeReq: "a",
+      qty: "1",
+      price: "$3000.00",
     },
   ];
-  const columns = [
+  const columns: GridColDef[] = [
     {
       headerName: "Product Name",
       field: "productName",
+      width: 250,
     },
     {
       headerName: "Product Description",
       field: "productDescription",
+      width: 250,
     },
     {
       headerName: "Employee Name",
       field: "employeeName",
+      width: 250,
     },
     {
       headerName: "Time Req",
       field: "timeReq",
+      width: 150,
     },
     {
       headerName: "Qty",
       field: "qty",
+      width: 190,
     },
     {
       headerName: "Price",
       field: "price",
+      width: 150,
     },
     {
-      headerName: "Actions",
+      headerName: "Action",
       field: "id",
-      cellRendererFramework: () => (
-        <div>
-          <Button
-            variant="text"
-            color="success"
-            onClick={() => window.confirm("You want to Delete this Data!!")}
-          >
-            Delete
+      width: 120,
+
+      renderCell: () => {
+        const onClick = () => {
+          window.confirm("you want to select this data!!");
+        };
+        return (
+          <Button variant="outlined" color="success" onClick={onClick}>
+            Select
           </Button>
-        </div>
-      ),
+        );
+      },
     },
   ];
 
-  const defaultColDef = {
-    sortable: true,
-    filter: true,
-    resizable: true,
-  };
   return (
     <div>
       <Typography variant="h5">Billing List</Typography>
-      <Grid
-        container
-        mt={1}
-        style={{ background: "black", height: "50px", color: "white" }}
-      >
-        <input
-          style={{
-            margin: "10px",
-            width: "20%",
-            height: "25px",
-            background: "#636466",
-            border: "2px solid green",
-            color: "white",
-          }}
-        />
+      <Grid container mt={1} height="50px" className="grid-wrap-back">
+        <input placeholder="Customer" className="customer_mobile_input_wrap" />
         <Button variant="text" className="btn">
           Find by Customer
         </Button>
-        <input
-          style={{
-            margin: "10px",
-            width: "20%",
-            height: "25px",
-            background: "#636466",
-            border: "2px solid green",
-            color: "white",
-          }}
-        />
+        <input placeholder="Mobile" className="customer_mobile_input_wrap" />
         <Button variant="text" className="btn">
           Find by Mobile
         </Button>
-        <Button variant="text" className="btn" style={{ marginLeft: "25px" }}>
+        <Button variant="text" className="booking_order_btn">
           Booking Order
         </Button>
-        <Button
-          variant="text"
-          className="btn"
-          style={{
-            marginLeft: "25px",
-            marginTop: "5px",
-            height: "40px",
-            border: "2px solid white",
-          }}
-        >
+        <Button variant="text" className="quick_order_btn">
           Quick Orders
         </Button>
-        <Button
-          variant="text"
-          className="btn"
-          onClick={handleClose}
-          style={{ marginLeft: "25px" }}
-        >
+        <Button variant="text" className="close_btn_wrap" onClick={handleClose}>
           Close
         </Button>
       </Grid>
-      <Grid
-        container
-        mb={2}
-        style={{ background: "orange", height: "10px" }}
-      ></Grid>
+      <Grid container mb={2} height="10px" className="second_grid_wrap"></Grid>
 
       <Grid container>
-        <div
+        {/* <div
           className="ag-theme-alpine"
           style={{ width: "100%", height: "600px" }}
         >
@@ -171,6 +148,10 @@ export default function OrderList(props: any) {
             defaultColDef={defaultColDef}
             animateRows={true}
           />
+        </div> */}
+
+        <div style={{ height: 600, width: "100%" }}>
+          <DataGrid rows={data} columns={columns} pageSize={5} />
         </div>
       </Grid>
     </div>

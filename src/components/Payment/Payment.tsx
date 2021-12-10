@@ -1,51 +1,89 @@
 import { Typography, Grid, Button, TextField } from "@mui/material";
-import { AgGridReact } from "ag-grid-react";
+// import { AgGridReact } from "ag-grid-react";
+// import "ag-grid-community/dist/styles/ag-grid.css";
+// import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import React from "react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
+import "./payment.css";
 export default function Payment(props: any) {
   const { handleClose } = props;
   const data = [
     {
-      productName: "a",
-      productDescription: "a",
+      id: 1,
+      productName: "facial package-1",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
       price: "$100.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 2,
+      productName: "facial package-2",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$350.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 3,
+      productName: "facial package-3",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$250.00",
+    },
+    {
+      id: 4,
+      productName: "facial package-4",
+      productDescription: "facial package-1",
+      employeeName: "a",
+      timeReq: "a",
+      qty: "1",
+      price: "$250.00",
+    },
+    {
+      id: 5,
+      productName: "facial package-5",
+      productDescription: "facial package-1",
+      employeeName: "a",
+      timeReq: "a",
+      qty: "1",
+      price: "$250.00",
+    },
+    {
+      id: 6,
+      productName: "new year package-1",
+      productDescription: "facial packages",
+      employeeName: "a",
+      timeReq: "a",
+      qty: "1",
+      price: "$3000.00",
     },
   ];
-  const columns = [
+  const columns: GridColDef[] = [
     {
       headerName: "Product Name",
       field: "productName",
+      width: 250,
     },
     {
       headerName: "Product Description",
       field: "productDescription",
+      width: 250,
     },
     {
       headerName: "Employee Name",
       field: "employeeName",
+      width: 250,
     },
     {
       headerName: "Time Req",
       field: "timeReq",
+      width: 150,
     },
     {
       headerName: "Qty",
@@ -54,64 +92,43 @@ export default function Payment(props: any) {
     {
       headerName: "Price",
       field: "price",
+      width: 130,
     },
   ];
-  const defaultColDef = {
-    sortable: true,
-    filter: true,
-    resizable: true,
-  };
+
   return (
     <div>
       <Typography variant="h5">Payment </Typography>
-      <Grid
-        container
-        style={{ background: "white", height: "50px", color: "black" }}
-      >
-        <Typography variant="subtitle2" style={{ margin: "8px" }}>
-          Date Of Sale: <span style={{ color: "red" }}>Dec 17,2021</span>
+      <Grid container className="head_grid">
+        <Typography variant="subtitle2" margin="8px">
+          Date Of Sale: <span className="color_span">Dec 17,2021</span>
         </Typography>
-        <Typography variant="subtitle2" style={{ margin: "8px" }}>
-          Appointment on: <span style={{ color: "red" }}>Dec 17,2021</span>
+        <Typography variant="subtitle2" margin="8px">
+          Appointment on: <span className="color_span">Dec 17,2021</span>
         </Typography>
-        <Typography variant="subtitle2" style={{ margin: "8px" }}>
-          Bill No: <span style={{ color: "red" }}>4</span>
+        <Typography variant="subtitle2" margin="8px">
+          Bill No: <span className="color_span">4</span>
         </Typography>
-        <Typography variant="subtitle2" style={{ margin: "8px" }}>
-          Order Type: <span style={{ color: "red" }}>BOK</span>
+        <Typography variant="subtitle2" margin="8px">
+          Order Type: <span className="color_span">BOK</span>
         </Typography>
-        <Typography variant="subtitle2" style={{ margin: "8px" }}>
+        <Typography variant="subtitle2" margin="8px">
           Table No: <br />
-          <span style={{ color: "red" }}>Table-03</span>
+          <span className="color_span">Table-03</span>
         </Typography>
-        <Typography variant="subtitle2" style={{ margin: "8px" }}>
-          Customer: <span style={{ color: "red" }}>max customer06</span>
+        <Typography variant="subtitle2" margin="8px">
+          Customer: <span className="color_span">max customer06</span>
         </Typography>
-        <Button
-          variant="contained"
-          onClick={handleClose}
-          style={{
-            height: "25px",
-            background: "orange",
-            borderRadius: "15px",
-            marginTop: "15px",
-            marginBottom: "15px",
-            marginLeft: "150px",
-          }}
-        >
+        <Button variant="contained" onClick={handleClose} className="close_btn">
           Close
         </Button>
       </Grid>
 
-      <Grid container mt={2} pt={1} pb={1} style={{ background: "#b4d9c9" }}>
-        <Grid item lg={6}>
+      <Grid container mt={2} pt={1} pb={1} className="box_grid">
+        <Grid item lg={6} md={6} sm={6} xs={6}>
           <Grid container>
-            <Grid item lg={4}>
-              <Typography
-                variant="subtitle2"
-                padding={1}
-                style={{ width: "50%" }}
-              >
+            <Grid item lg={4} md={4} sm={4} xs={4}>
+              <Typography variant="subtitle2" padding={1} width="50%">
                 Sub Total:
               </Typography>
               <Typography variant="subtitle2" padding={1}>
@@ -133,236 +150,108 @@ export default function Payment(props: any) {
                 Balance:
               </Typography>
             </Grid>
-            <Grid item lg={3}>
+            <Grid item lg={3} md={3} sm={3} xs={3}>
               <Typography
                 variant="subtitle2"
                 padding={1}
-                style={{ fontWeight: "bold", textAlign: "end" }}
+                fontWeight="bold"
+                textAlign="end"
               >
                 $4200.00
               </Typography>
               <Typography
                 variant="subtitle2"
                 padding={1}
-                style={{ fontWeight: "bold", textAlign: "end" }}
+                fontWeight="bold"
+                textAlign="end"
               >
                 $0.00
               </Typography>
               <Typography
                 variant="subtitle2"
                 padding={1}
-                style={{ fontWeight: "bold", textAlign: "end" }}
+                fontWeight="bold"
+                textAlign="end"
               >
                 $5.00
               </Typography>
               <Typography
                 variant="subtitle2"
                 padding={1}
-                style={{ fontWeight: "bold", textAlign: "end" }}
+                fontWeight="bold"
+                textAlign="end"
               >
                 $4410.00
               </Typography>
               <Typography
                 variant="subtitle2"
                 padding={1}
-                style={{ fontWeight: "bold", textAlign: "end" }}
+                fontWeight="bold"
+                textAlign="end"
               >
                 $0.00
               </Typography>
               <Typography
                 variant="subtitle2"
                 padding={1}
-                style={{ fontWeight: "bold", textAlign: "end" }}
+                fontWeight="bold"
+                textAlign="end"
               >
                 $0.00
               </Typography>
               <Typography
                 variant="subtitle2"
                 padding={1}
-                style={{
-                  fontWeight: "bold",
-                  color: "purple",
-                  textAlign: "end",
-                }}
+                fontWeight="bold"
+                textAlign="end"
+                color="purple"
               >
                 $4410.00
               </Typography>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item lg={6}>
+        <Grid item lg={6} md={12} sm={12} xs={12}>
           <Grid container sx={{ marginTop: "3px" }}>
-            <Grid item lg={6}>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+            <Grid item lg={6} md={6} sm={6} xs={6}>
+              <Button variant="contained" className="calc_btn1">
                 7
               </Button>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+              <Button variant="contained" className="calc_btn1">
                 8
               </Button>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+              <Button variant="contained" className="calc_btn1">
                 9
               </Button>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+              <Button variant="contained" className="calc_btn1">
                 4
               </Button>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+              <Button variant="contained" className="calc_btn1">
                 5
               </Button>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+              <Button variant="contained" className="calc_btn1">
                 6
               </Button>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+              <Button variant="contained" className="calc_btn1">
                 1
               </Button>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+              <Button variant="contained" className="calc_btn1">
                 2
               </Button>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+              <Button variant="contained" className="calc_btn1">
                 3
               </Button>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+              <Button variant="contained" className="calc_btn1">
                 .
               </Button>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+              <Button variant="contained" className="calc_btn1">
                 0
               </Button>
-              <Button
-                variant="contained"
-                style={{
-                  width: "30%",
-                  height: "75px",
-                  marginBottom: 2,
-                  marginRight: 2,
-                  color: "orange",
-                  fontWeight: "bold",
-                  background: "white",
-                }}
-              >
+              <Button variant="contained" className="calc_btn1">
                 C
               </Button>
             </Grid>
-            <Grid item lg={6}>
+            <Grid item lg={6} md={6} sm={6} xs={6}>
               <Grid
                 container
                 ml={3}
@@ -370,49 +259,19 @@ export default function Payment(props: any) {
                 direction="column"
                 justifyContent="center"
                 p={2}
-                sx={{
-                  background: "white",
-                  width: "80%",
-                }}
+                width="80%"
+                className="box_background"
               >
-                <Button
-                  variant="contained"
-                  style={{
-                    background: "#3a946d",
-                    height: "50px",
-                    marginBottom: 5,
-                  }}
-                >
+                <Button variant="contained" className="box_cash_btn">
                   Cash
                 </Button>
-                <Button
-                  variant="contained"
-                  style={{
-                    background: "#3a946d",
-                    height: "75px",
-                    marginBottom: 5,
-                  }}
-                >
+                <Button variant="contained" className="box_btn">
                   Credit Card
                 </Button>
-                <Button
-                  variant="contained"
-                  style={{
-                    background: "#3a946d",
-                    height: "75px",
-                    marginBottom: 5,
-                  }}
-                >
+                <Button variant="contained" className="box_btn">
                   Currency Payment
                 </Button>
-                <Button
-                  variant="contained"
-                  style={{
-                    background: "#3a946d",
-                    height: "75px",
-                    marginBottom: 5,
-                  }}
-                >
+                <Button variant="contained" className="box_btn">
                   Customer Account
                 </Button>
               </Grid>
@@ -430,13 +289,17 @@ export default function Payment(props: any) {
         placeholder="Enter Amount"
       />
       <Grid container>
-        <div className="ag-theme-alpine" style={{ height: 300, width: "100%" }}>
+        {/* <div className="ag-theme-alpine" style={{ height: 300, width: "100%" }}>
           <AgGridReact
             rowData={data}
             columnDefs={columns}
             defaultColDef={defaultColDef}
             animateRows={true}
           />
+        </div> */}
+
+        <div style={{ height: 300, width: "100%" }}>
+          <DataGrid rows={data} columns={columns} pageSize={5} />
         </div>
       </Grid>
     </div>

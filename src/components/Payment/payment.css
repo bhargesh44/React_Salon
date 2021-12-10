@@ -1,0 +1,43 @@
+.head_grid {
+  height: 50px;
+  background: white;
+  color: black;
+}
+.color_span {
+  color: red;
+}
+.close_btn {
+  height: 25px;
+  background: orange !important;
+  border-radius: 15px !important;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+  margin-left: 150px !important;
+}
+.box_grid {
+  background: #b4d9c9;
+}
+.calc_btn1 {
+  width: 30%;
+  height: 75px;
+  margin-bottom: 2px !important;
+  margin-right: 2px !important;
+  color: black !important;
+  font-weight: bold;
+  background: white !important;
+  text-align: center !important;
+}
+.box_background {
+  background: white;
+}
+.box_cash_btn {
+  height: 50px;
+  background: #3a946d !important;
+  margin-bottom: 5px !important;
+}
+
+.box_btn {
+  height: 75px;
+  background: #3a946d !important;
+  margin-bottom: 5px !important;
+}

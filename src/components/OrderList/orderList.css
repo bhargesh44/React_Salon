@@ -1,6 +1,45 @@
 .btn {
-  margin-right: 25px;
+  margin-right: 25px !important;
   color: white !important;
   font-weight: 600 !important;
   text-transform: none !important;
+}
+.grid-wrap-back {
+  background: black !important;
+  color: white !important;
+}
+.customer_mobile_input_wrap {
+  margin: 10px !important;
+  width: 20%;
+  height: 25px;
+  background: transparent;
+  border: 2px solid green;
+  color: white;
+}
+.booking_order_btn {
+  margin-right: 25px !important;
+  margin-left: 25px !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+}
+.quick_order_btn {
+  margin-right: 25px !important;
+  margin-left: 25px !important;
+  margin-top: 5px !important;
+  height: 40px;
+  border: 2px solid white !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+}
+.close_btn_wrap {
+  margin-right: 25px !important;
+  margin-left: 25px !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+}
+.second_grid_wrap {
+  background: orange;
 }

@@ -4,3 +4,35 @@
   font-weight: 600 !important;
   text-transform: none !important;
 }
+.grid_wrap {
+  background: black;
+  color: white;
+}
+.second_grid {
+  background: orange !important;
+}
+.customer_input {
+  width: 80%;
+  margin-right: 10px;
+}
+.list_btn {
+  border-radius: 12px !important;
+}
+.gender {
+  width: 50%;
+  margin-left: 30px !important;
+}
+.chair {
+  margin-left: 20px !important;
+  width: 50%;
+}
+.paper-wrap {
+  height: 100px;
+  width: 100px;
+  border: 1px solid gray;
+}
+.paper-wrap-1 {
+  height: 100px;
+  width: 75px;
+  border: 1px solid gray;
+}

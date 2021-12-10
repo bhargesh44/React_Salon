@@ -6,7 +6,68 @@
 .greenColor {
   color: green;
 }
-.table-wrap{
-    width: 100%;
-    height: 700px;
+.table-wrap {
+  width: 100%;
+  height: 700px;
+}
+
+.payment_btn {
+  width: 100%;
+  height: 75px;
+  margin-bottom: 2px !important;
+  color: black !important;
+  border: 1px solid gray !important;
+}
+.function_other_btn {
+  width: 50%;
+  height: 75px;
+  color: black !important;
+  border: 1px solid gray !important;
+}
+.calc_btn {
+  width: 33%;
+  height: 75px;
+  margin-bottom: 2px !important;
+  color: orange !important;
+  font-weight: bold !important;
+  background: #383b39 !important;
+}
+.order_more_btn {
+  width: 100%;
+  height: 75px;
+  margin-bottom: 5px !important;
+  color: black !important;
+  border: 1px solid gray !important;
+}
+.order_list_btn {
+  width: 100%;
+  height: 75px;
+  margin-bottom: 5px !important;
+  margin-top: 5px !important;
+  color: black !important;
+  border: 1px solid gray !important;
+}
+
+.new_quick_btn {
+  width: 50%;
+  height: 75px;
+  color: black !important;
+  border: 1px solid gray !important;
+}
+
+.list_icon_btn {
+  width: 100%;
+  height: 75px;
+  margin-bottom: 5px !important;
+  background: #383b39 !important;
+}
+.amount_input {
+  width: 100%;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  padding-left: 10px !important;
+}
+.span_wrap {
+  font-size: 14px !important;
+  color: #90ee90;
 }

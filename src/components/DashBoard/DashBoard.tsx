@@ -1,9 +1,12 @@
 import React from "react";
 import { Button, Grid, Typography, TextField } from "@mui/material";
-import { AgGridReact } from "ag-grid-react";
+// import { AgGridReact } from "ag-grid-react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+
 import "./dashBoard.css";
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+
+// import "ag-grid-community/dist/styles/ag-grid.css";
+// import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 import Booking from "../Booking/Booking";
 
@@ -30,62 +33,80 @@ const style = {
 export default function DashBoard() {
   const data = [
     {
-      productName: "a",
-      productDescription: "a",
+      id: 1,
+      productName: "facial package-1",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
       price: "$100.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 2,
+      productName: "facial package-2",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$350.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 3,
+      productName: "facial package-3",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$250.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 4,
+      productName: "facial package-4",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$250.00",
     },
     {
-      productName: "a",
-      productDescription: "a",
+      id: 5,
+      productName: "facial package-5",
+      productDescription: "facial package-1",
       employeeName: "a",
       timeReq: "a",
       qty: "1",
-      price: "$100.00",
+      price: "$250.00",
+    },
+    {
+      id: 6,
+      productName: "new year package-1",
+      productDescription: "facial packages",
+      employeeName: "a",
+      timeReq: "a",
+      qty: "1",
+      price: "$3000.00",
     },
   ];
-  const columns = [
+  const columns: GridColDef[] = [
     {
       headerName: "Product Name",
       field: "productName",
+      width: 250,
     },
     {
       headerName: "Product Description",
       field: "productDescription",
+      width: 250,
     },
     {
       headerName: "Employee Name",
       field: "employeeName",
+      width: 250,
     },
     {
       headerName: "Time Req",
       field: "timeReq",
+      width: 150,
     },
     {
       headerName: "Qty",
@@ -94,29 +115,26 @@ export default function DashBoard() {
     {
       headerName: "Price",
       field: "price",
+      width: 150,
     },
     {
-      headerName: "Actions",
+      headerName: "Action",
       field: "id",
-      cellRendererFramework: () => (
-        <div>
-          <Button
-            variant="text"
-            color="success"
-            onClick={() => window.confirm("You want to Delete this Data!!")}
-          >
+      width: 120,
+
+      renderCell: () => {
+        const onClick = () => {
+          window.confirm("you want to delete this data!!");
+        };
+        return (
+          <Button variant="text" color="success" onClick={onClick}>
             Delete
           </Button>
-        </div>
-      ),
+        );
+      },
     },
   ];
 
-  const defaultColDef = {
-    sortable: true,
-    filter: true,
-    resizable: true,
-  };
   const [openQuickOrder, setOpenQuickOrder] = React.useState(false);
   const [openOrderList, setOpenOrderList] = React.useState(false);
   const [openBooking, setOpenBooking] = React.useState(false);
@@ -140,25 +158,21 @@ export default function DashBoard() {
         <Grid item lg={8} md={8} sm={8} xs={8}>
           <Grid container>
             <Grid item lg={4}>
-              <Typography variant="subtitle1" style={{ marginLeft: "50px" }}>
+              <Typography variant="subtitle1" marginLeft="50px">
                 Customer:
-                <span style={{ color: "#90EE90", fontSize: "14px" }}>abc</span>
+                <span className="span_wrap">abc</span>
               </Typography>
             </Grid>
             <Grid item lg={4}>
               <Typography variant="subtitle1">
                 Date Of Sale:
-                <span style={{ color: "#90EE90", fontSize: "14px" }}>
-                  Dec 17,2021
-                </span>
+                <span className="span_wrap">Dec 17,2021</span>
               </Typography>
             </Grid>
             <Grid item lg={4}>
               <Typography variant="subtitle1">
                 Appointment on:
-                <span style={{ color: "#90EE90", fontSize: "14px" }}>
-                  Dec 17,2021
-                </span>
+                <span className="span_wrap">Dec 17,2021</span>
               </Typography>
             </Grid>
           </Grid>
@@ -167,7 +181,7 @@ export default function DashBoard() {
 
       <Grid container direction="row" spacing={2}>
         <Grid item lg={8} md={8} sm={8} xs={8}>
-          <div
+          {/* <div
             className="ag-theme-alpine"
             style={{ height: 700, width: "100%", paddingLeft: "8px" }}
           >
@@ -177,244 +191,92 @@ export default function DashBoard() {
               defaultColDef={defaultColDef}
               animateRows={true}
             />
+          </div> */}
+
+          <div style={{ height: 700, width: "100%", paddingLeft: "8px" }}>
+            <DataGrid rows={data} columns={columns} pageSize={5} />
           </div>
 
           <TextField
             hiddenLabel
             id="filled-hidden-label-small"
+            className="amount_input"
             size="small"
-            sx={{ mt: 1, mb: 1, width: "100%", pl: 1 }}
             InputProps={{ disableUnderline: true }}
-            placeholder="Customer"
+            placeholder="Enter Amount"
           />
         </Grid>
         <Grid item lg={4} md={4} sm={4} xs={4}>
-          <Button
-            variant="contained"
-            style={{
-              width: "100%",
-              height: "75px",
-              marginBottom: 5,
-              background: "#383b39",
-            }}
-          >
-            <ListIcon />
+          <Button variant="contained" className="list_icon_btn">
+            <ListIcon color="primary" />
           </Button>
           <Button
             variant="outlined"
+            className="new_quick_btn"
             onClick={handleOpen}
-            style={{ width: "50%", height: "75px", color: "black" }}
           >
             New Booking
           </Button>
           <Button
             variant="outlined"
+            className="new_quick_btn"
             onClick={handleOpen1}
-            style={{ width: "50%", height: "75px", color: "black" }}
           >
             Quick Sale
           </Button>
           <Button
             variant="outlined"
+            className="order_list_btn"
             onClick={handleOpen2}
-            style={{
-              width: "100%",
-              height: "75px",
-              marginBottom: 5,
-              marginTop: 5,
-              color: "black",
-            }}
           >
             <ListIcon color="primary" /> Order List
           </Button>
-          <Button
-            variant="outlined"
-            style={{
-              width: "100%",
-              height: "75px",
-              marginBottom: 5,
-              color: "black",
-            }}
-          >
+          <Button variant="outlined" className="order_more_btn">
             <AddCircleOutlineRoundedIcon color="success" /> Order More
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             7
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             8
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             9
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             4
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             5
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             6
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             1
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             2
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             3
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             .
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             0
           </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "33%",
-              height: "75px",
-              marginBottom: 2,
-              color: "orange",
-              fontWeight: "bold",
-              background: "#383b39",
-            }}
-          >
+          <Button variant="contained" className="calc_btn">
             C
           </Button>
-          <Button
-            variant="outlined"
-            style={{
-              width: "100%",
-              height: "75px",
-              marginBottom: 2,
-              color: "black",
-            }}
-          >
+          <Button variant="outlined" className="payment_btn">
             Payment
           </Button>
-          <Button
-            variant="outlined"
-            style={{ width: "50%", height: "75px", color: "black" }}
-          >
+          <Button variant="outlined" className="function_other_btn">
             <PendingOutlinedIcon color="success" /> functions
           </Button>
-          <Button
-            variant="outlined"
-            style={{ width: "50%", height: "75px", color: "black" }}
-          >
+          <Button variant="outlined" className="function_other_btn">
             <PendingOutlinedIcon color="success" /> Others
           </Button>
         </Grid>

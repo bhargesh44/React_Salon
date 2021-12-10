@@ -9,124 +9,87 @@ import {
   Select,
   SelectChangeEvent,
   Typography,
+  TextField,
 } from "@mui/material";
+
+import "./quickOrder.css";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Box from "@mui/material/Box";
 
-import { AgGridReact } from "ag-grid-react";
+// import { AgGridReact } from "ag-grid-react";
 
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+// import "ag-grid-community/dist/styles/ag-grid.css";
+// import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 export default function QuickOrder(props: any) {
   const { handleClose } = props;
   const [table, setTable] = React.useState("");
   const data = [
-    {
-      productName: "a",
-      qty: "a",
-      rate: "a",
-    },
-    {
-      productName: "a",
-      qty: "a",
-      rate: "a",
-    },
-    {
-      productName: "a",
-      qty: "a",
-      rate: "a",
-    },
-    {
-      productName: "a",
-      qty: "a",
-      rate: "a",
-    },
-    {
-      productName: "a",
-      qty: "a",
-      rate: "a",
-    },
+    { id: 1, productName: "abcsdg", qty: "1", rate: "$500.00" },
+    { id: 2, productName: "aerahgwerw", qty: "1", rate: "$50.00" },
+    { id: 3, productName: "arthjrtj", qty: "1", rate: "$500.00" },
+    { id: 4, productName: "ajhrttrtrt", qty: "1", rate: "$500.00" },
+    { id: 5, productName: "atrjrtf", qty: "1", rate: "$250.00" },
   ];
-  const columns = [
+  const columns: GridColDef[] = [
     {
       headerName: "Product Name",
       field: "productName",
+      width: 175,
     },
     {
       headerName: "Qty",
       field: "qty",
+      width: 175,
     },
     {
       headerName: "Rate",
       field: "rate",
+      width: 175,
     },
 
     {
       headerName: "Select",
       field: "id",
-      cellRendererFramework: () => (
-        <div>
-          <DeleteForeverIcon
-            color="error"
-            onClick={() => window.confirm("You want to Delete this Data!!")}
-          />
-        </div>
-      ),
+      width: 175,
+      renderCell: () => {
+        const onClick = () => {
+          window.confirm("you want to delete this data!!");
+        };
+        return <DeleteForeverIcon color="error" onClick={onClick} />;
+      },
     },
   ];
 
-  const defaultColDef = {
-    sortable: true,
-    filter: true,
-    resizable: true,
-  };
   const handleChanges = (event: SelectChangeEvent) => {
     setTable(event.target.value as string);
   };
   return (
     <div>
       <Typography variant="h5">Quick order</Typography>
-      <Grid
-        container
-        mt={1}
-        style={{ background: "black", height: "50px", color: "white" }}
-      >
+      <Grid container mt={1} height="50px" className="grid_back">
         <Grid item lg={8}>
-          <Typography variant="subtitle1" style={{ marginLeft: "25px" }}>
+          <Typography variant="subtitle1" marginLeft="25px">
             Oder no :
           </Typography>
         </Grid>
         <Grid item lg={4}>
-          <Button variant="text" className="btn">
+          <Button variant="text" className="update_btn">
             Update
           </Button>
-          <Button
-            variant="text"
-            className="btn"
-            onClick={handleClose}
-            style={{ marginLeft: "50px" }}
-          >
+          <Button variant="text" className="close_btn1" onClick={handleClose}>
             Close
           </Button>
         </Grid>
       </Grid>
-      <Grid
-        container
-        mb={2}
-        style={{ background: "orange", height: "10px" }}
-      ></Grid>
+      <Grid container mb={2} height="10px" className="second_grid_back"></Grid>
 
-      <Box
-        component="span"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
+      <Box component="span" display="flex" justifyContent="center">
         <Grid container>
           <Grid item lg={6} md={6} sm={6} xs={6}>
             <Grid container>
-              <div
+              {/* <div
                 className="ag-theme-alpine"
                 style={{ height: 500, width: "100%" }}
               >
@@ -136,24 +99,25 @@ export default function QuickOrder(props: any) {
                   defaultColDef={defaultColDef}
                   animateRows={true}
                 />
+              </div> */}
+
+              <div style={{ height: 500, width: "100%" }}>
+                <DataGrid rows={data} columns={columns} pageSize={5} />
               </div>
             </Grid>
             <Grid container>
               <Grid item lg={6}>
-                <input
+                <TextField
+                  hiddenLabel
+                  id="filled-hidden-label-small"
+                  className="barcode_input"
+                  size="small"
+                  InputProps={{ disableUnderline: true }}
                   placeholder="Enter Item Barcode"
-                  style={{ width: "100%", height: "32px", marginTop: "25px" }}
                 />
               </Grid>
               <Grid item lg={6}>
-                <FormControl
-                  style={{
-                    marginLeft: "20px",
-                    marginTop: "25px",
-                    width: "90%",
-                    marginBottom: "25px",
-                  }}
-                >
+                <FormControl className="chair-wrap">
                   <InputLabel htmlFor="my-input">Select Chair</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -177,25 +141,18 @@ export default function QuickOrder(props: any) {
             <Grid
               container
               justifyContent="flex-start"
-              sx={{ marginLeft: "18px", marginBottom: "10px" }}
+              marginLeft="18px"
+              marginBottom="10px"
               spacing={2}
             >
               {[0, 1].map((value) => (
                 <Grid key={value} item>
-                  <Paper
-                    sx={{
-                      height: 100,
-                      width: 100,
-                      border: "1px solid gray",
-                    }}
-                  >
+                  <Paper className="paper-wrap-2">
                     <Box
                       component="span"
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        marginY: 2,
-                      }}
+                      display="flex"
+                      justifyContent="center"
+                      marginY={2}
                     >
                       <Button>salon creams</Button>
                     </Box>
@@ -210,10 +167,7 @@ export default function QuickOrder(props: any) {
                   18, 19, 20,
                 ].map((value) => (
                   <Grid key={value} item>
-                    <Paper
-                      sx={{ height: 100, width: 75, border: "1px solid gray" }}
-                    >
-                      {" "}
+                    <Paper className="paper-wrap-3">
                       <Box
                         component="span"
                         sx={{
@@ -235,15 +189,21 @@ export default function QuickOrder(props: any) {
 
       <Grid container mt={2} ml={5}>
         <Grid item lg={2}>
-          <Typography variant="subtitle1">Total Qty</Typography>
+          <Typography variant="subtitle1" fontWeight="bold">
+            Total Qty
+          </Typography>
           <span>0.00</span>
         </Grid>
         <Grid item lg={2}>
-          <Typography variant="subtitle1">Sub Total </Typography>
+          <Typography variant="subtitle1" fontWeight="bold">
+            Sub Total{" "}
+          </Typography>
           <span>$1800.00</span>
         </Grid>
         <Grid item lg={2}>
-          <Typography variant="subtitle1">Balance</Typography>
+          <Typography variant="subtitle1" fontWeight="bold">
+            Balance
+          </Typography>
           <span>$1800.00</span>
         </Grid>
       </Grid>
